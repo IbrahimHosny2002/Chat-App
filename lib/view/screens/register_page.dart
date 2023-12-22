@@ -1,12 +1,13 @@
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/view/screens/register_page.dart';
 import 'package:chat_app/view/widgets/custom_button.dart';
 import 'package:chat_app/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-  static String id = 'LoginPage';
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
+  static String id = 'RgisterPage';
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class LoginPage extends StatelessWidget {
                 const Row(
                   children: [
                     Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(fontSize: 24, color: Colors.white),
                     ),
                   ],
@@ -51,7 +52,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const CustomButton(buttonText: 'Login'),
+                const CustomButton(buttonText: 'Register'),
                 const SizedBox(
                   height: 8,
                 ),
@@ -59,15 +60,15 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'don`t have an account?',
+                      'already have an account?',
                       style: TextStyle(fontSize: 15, color: Colors.white),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, RegisterPage.id);
+                        Navigator.pop(context);
                       },
                       child: const Text(
-                        '  Register',
+                        '  Login',
                         style:
                             TextStyle(fontSize: 15, color: Color(0xFFC7EDE6)),
                       ),
@@ -75,7 +76,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: 120,
                 ),
               ],
             ),

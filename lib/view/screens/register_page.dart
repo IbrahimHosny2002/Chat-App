@@ -1,12 +1,11 @@
-import 'package:chat_app/view/screens/register_page.dart';
 import 'package:chat_app/view/widgets/custo_text_field.dart';
 import 'package:chat_app/view/widgets/customb_buttom.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
-  static String id = 'LoginPage';
+  static String id = 'RegisterPage';
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class LoginPage extends StatelessWidget {
             ),
             const Row(children: [
               Text(
-                'Login',
+                'Register',
                 style: TextStyle(fontSize: 30, color: Colors.white),
               ),
             ]),
@@ -59,7 +58,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            const CustoButtom(textButtom: 'Login'),
+            const CustoButtom(textButtom: 'Register'),
             const SizedBox(
               height: 10,
             ),
@@ -67,15 +66,15 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'don\'t have an account?',
+                  'already have an account?',
                   style: TextStyle(fontSize: 15, color: Colors.white),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RegisterPage.id);
+                    Navigator.of(context).pop();
                   },
                   child: const Text(
-                    '  Register',
+                    '  Login',
                     style: TextStyle(fontSize: 15, color: Color(0XFFC7EDE6)),
                   ),
                 ),

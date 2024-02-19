@@ -46,19 +46,21 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const CustomTextField(
+            CustomTextField(
+              onChanged: (date) {},
               hintText: 'Email',
             ),
             const SizedBox(
               height: 10,
             ),
-            const CustomTextField(
+            CustomTextField(
+              onChanged: (date) {},
               hintText: 'Password',
             ),
             const SizedBox(
               height: 25,
             ),
-            const CustoButtom(textButtom: 'Register'),
+            CustoButtom(onTap: () async {}, textButtom: 'Register'),
             const SizedBox(
               height: 10,
             ),

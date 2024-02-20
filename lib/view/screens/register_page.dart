@@ -74,6 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 10,
                 ),
                 CustomTextField(
+                  isSecure: true,
                   onChanged: (date) {
                     password = date;
                   },

@@ -7,13 +7,20 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (data) {
+        if (data!.isEmpty) {
+          return "this field is required";
+        }else{
+          return null;
+        }
+      },
       onChanged: onChanged,
       decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.white),
-          border:
-              const OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+          border: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white)),
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
             color: Colors.white,

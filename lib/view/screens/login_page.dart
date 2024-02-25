@@ -1,4 +1,6 @@
+import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/view/screens/chat_page.dart';
 import 'package:chat_app/view/screens/register_page.dart';
 import 'package:chat_app/view/widgets/custo_text_field.dart';
 import 'package:chat_app/view/widgets/customb_buttom.dart';
@@ -16,7 +18,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? email, password;
+  String? userName, email, password;
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -26,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        backgroundColor: const Color(0xFF2B475E),
+        backgroundColor: kPrimaryColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Form(
@@ -37,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 100,
                 ),
                 Image.asset(
-                  "assets/images/scholar.png",
+                  kLogo,
                   height: 100,
                 ),
                 const Row(
@@ -66,6 +68,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 CustomTextField(
                   onChanged: (data) {
+                    userName = data;
+                  },
+                  hintText: 'Username',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomTextField(
+                  onChanged: (data) {
                     email = data;
                   },
                   hintText: 'Email',
@@ -91,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                         isLoading = true;
                         setState(() {});
                         await loginUser();
-                        showSnackBar(context, 'success');
+                        Navigator.pushReplacementNamed(context, ChatPage.id,arguments: userName);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnackBar(context, 'user-not-found');
@@ -127,6 +138,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 200,
                 ),
               ],
             ),

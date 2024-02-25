@@ -1,4 +1,6 @@
+import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/view/screens/chat_page.dart';
 import 'package:chat_app/view/widgets/custo_text_field.dart';
 import 'package:chat_app/view/widgets/customb_buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +17,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  String? email, password;
+  String?userName, email, password;
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -26,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        backgroundColor: const Color(0xFF2B475E),
+        backgroundColor: kPrimaryColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Form(
@@ -37,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 100,
                 ),
                 Image.asset(
-                  "assets/images/scholar.png",
+                  kLogo,
                   height: 100,
                 ),
                 const Row(
@@ -66,6 +68,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 CustomTextField(
                   onChanged: (date) {
+                    userName = date;
+                  },
+                  hintText: 'Username',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomTextField(
+                  onChanged: (date) {
                     email = date;
                   },
                   hintText: 'Email',
@@ -90,7 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           isLoading = true;
                           setState(() {});
                           await registerUser();
-                          showSnackBar(context, 'success');
+                          Navigator.pushReplacementNamed(context, ChatPage.id,arguments: userName);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             showSnackBar(context, 'weak-password');
@@ -128,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 const SizedBox(
-                  height: 100,
+                  height: 200,
                 ),
               ],
             ),
